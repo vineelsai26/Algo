@@ -1,0 +1,39 @@
+.navBottom {
+    padding-top: 100px;
+    margin-top: 0px;
+}
+
+.centerTitle {
+  	text-align: center;
+}
+
+.graph {
+    width: 80%;
+    margin: auto;
+}
+
+.bar {
+    float: left;
+    background-color: orange;
+    border: 1px solid black;
+    margin: 1px;
+    transition: height 0.1s;
+}
+
+.seekBar{
+    width: 80%;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 30px;
+    margin-left: 10%;
+}
+
+.startButton {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    margin-top: -50px;
+    cursor: pointer;
+}
