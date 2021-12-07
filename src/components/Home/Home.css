@@ -38,10 +38,10 @@ body {
     border-radius: 10px;
     background-image: linear-gradient(
         to right,
-        #6253e1,
-        #852d91,
-        #a3a1ff,
-        #f24645
+        blue,
+        purple,
+        orange,
+        red
     );
     box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
     -webkit-transition: all .4s ease-in-out;

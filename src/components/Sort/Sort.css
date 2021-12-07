@@ -29,11 +29,36 @@
 }
 
 .startButton {
-    margin: 0;
+    width: 150px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
     position: absolute;
     left: 50%;
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    margin-top: -50px;
-    cursor: pointer;
+    margin-top: -60px;
+    height: 40px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 10px;
+    background-image: linear-gradient(
+        to right,
+        blue,
+        purple,
+        orange,
+        red
+    );
+    box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
 }
+
+.startButton:hover {
+    background-position: 100% 0;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+

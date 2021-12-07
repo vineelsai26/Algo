@@ -67,9 +67,9 @@ function sort(algorithm) {
     if (algorithm === 'bubble') {
         bubbleSort(bars)
     } else if (algorithm === 'insertion') {
-
+        insertionSort(bars)
     } else if (algorithm === 'selection') {
-
+        selectionSort(bars)
     } else if (algorithm === 'merge') {
 
     } else if (algorithm === 'quick') {
@@ -83,6 +83,12 @@ const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
+function swap(bars, i, j) {
+    let temp = bars[i].style.height
+    bars[i].style.height = bars[j].style.height
+    bars[j].style.height = temp
+}
+
 async function bubbleSort(bars) {
     for (let i = 0; i < bars.length; i++) {
         for (let j = 0; j < bars.length - i - 1; j++) {
@@ -91,13 +97,55 @@ async function bubbleSort(bars) {
             const height1 = parseInt(bars[j].style.height.replace('px', ''))
             const height2 = parseInt(bars[j + 1].style.height.replace('px', ''))
             if (height1 > height2) {
-                let temp = bars[j].style.height
-                bars[j].style.height = bars[j + 1].style.height
-                bars[j + 1].style.height = temp
+                swap(bars, j, j + 1)
                 await sleep(1000 / bars.length)
             }
             bars[j].style.backgroundColor = 'orange'
             bars[j + 1].style.backgroundColor = 'orange'
         }
+    }
+}
+
+async function insertionSort(bars) {
+    let i, j, temp
+    for (i = 1; i < bars.length; i++) {
+        temp = parseInt(bars[i].style.height.replace('px', ''))
+        j = i - 1
+        while (j >= 0 && parseInt(bars[j].style.height.replace('px', '')) > temp) {
+            bars[j].style.backgroundColor = 'red'
+            bars[j + 1].style.backgroundColor = 'red'
+            bars[j + 1].style.height = bars[j].style.height
+            await sleep(1000 / bars.length)
+            bars[j].style.backgroundColor = 'orange'
+            bars[j + 1].style.backgroundColor = 'orange'
+            j -= 1
+        }
+        bars[j + 1].style.height = `${temp}px`
+        bars[j + 1].style.backgroundColor = 'orange'
+    }
+}
+
+async function selectionSort(bars) {
+    let i, j, min
+
+    for (i = 0; i < bars.length - 1; i++) {
+        min = i
+        for (j = i + 1; j < bars.length; j++) {
+            if (parseInt(bars[j].style.height.replace('px', '')) < parseInt(bars[min].style.height.replace('px', ''))) {
+                min = j
+                bars[min].style.backgroundColor = 'red'
+                await sleep(1000 / bars.length)
+            }
+        }
+
+        bars[min].style.backgroundColor = 'red'
+        bars[i].style.backgroundColor = 'red'
+
+        swap(bars, i, min)
+
+        await sleep(1000 / bars.length)
+
+        bars[min].style.backgroundColor = 'orange'
+        bars[i].style.backgroundColor = 'orange'
     }
 }
