@@ -71,7 +71,7 @@ function sort(algorithm) {
     } else if (algorithm === 'selection') {
         selectionSort(bars)
     } else if (algorithm === 'merge') {
-
+        mergeSort(bars, 0, bars.length - 1)
     } else if (algorithm === 'quick') {
 
     } else if (algorithm === 'heap') {
@@ -148,4 +148,64 @@ async function selectionSort(bars) {
         bars[min].style.backgroundColor = 'orange'
         bars[i].style.backgroundColor = 'orange'
     }
+}
+
+async function merge(bars, l, m, r) {
+    let n1 = m - l + 1
+    let n2 = r - m
+
+    let L = new Array(n1)
+    let R = new Array(n2)
+
+    for (let i = 0; i < n1; i++) {
+        L[i] = parseInt(bars[l + i].style.height.replace('px', ''))
+    }
+
+    for (let j = 0; j < n2; j++) {
+        R[j] = parseInt(bars[m + 1 + j].style.height.replace('px', ''))
+    }
+
+    let a = 0
+    let b = 0
+    let k = l
+
+    while (a < n1 && b < n2) {
+        if (L[a] <= R[b]) {
+            bars[k].style.height = `${L[a]}px`
+            a++
+        }
+        else {
+            bars[k].style.height = `${R[b]}px`
+            b++
+        }
+        bars[k].style.backgroundColor = 'red'
+        await sleep(1000 / bars.length)
+        k++
+    }
+
+    while (a < n1) {
+        bars[k].style.backgroundColor = 'red'
+        bars[k].style.height = `${L[a]}px`
+        await sleep(1000 / bars.length)
+        a++
+        k++
+    }
+
+    while (b < n2) {
+        bars[k].style.backgroundColor = 'red'
+        bars[k].style.height = `${R[b]}px`
+        await sleep(1000 / bars.length)
+        b++
+        k++
+    }
+}
+
+async function mergeSort(bars, l, r) {
+    if (l >= r) {
+        return
+    }
+    let m = l + parseInt((r - l) / 2)
+    await mergeSort(bars, l, m)
+    await mergeSort(bars, m + 1, r)
+    await merge(bars, l, m, r)
 }
