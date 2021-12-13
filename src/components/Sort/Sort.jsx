@@ -73,9 +73,9 @@ function sort(algorithm) {
     } else if (algorithm === 'merge') {
         mergeSort(bars, 0, bars.length - 1)
     } else if (algorithm === 'quick') {
-
+        quickSort(bars, 0, bars.length - 1)
     } else if (algorithm === 'heap') {
-
+        heapSort(bars)
     }
 }
 
@@ -208,4 +208,80 @@ async function mergeSort(bars, l, r) {
     await mergeSort(bars, l, m)
     await mergeSort(bars, m + 1, r)
     await merge(bars, l, m, r)
+}
+
+async function heapify(bars, n, i) {
+    let largest = i
+    let l = 2 * i + 1
+    let r = 2 * i + 2
+
+    if (l < n && parseInt(bars[l].style.height.replace('px', '')) > parseInt(bars[largest].style.height.replace('px', ''))) {
+        largest = l
+    }
+
+    if (r < n && parseInt(bars[r].style.height.replace('px', '')) > parseInt(bars[largest].style.height.replace('px', ''))) {
+        largest = r
+    }
+
+    if (largest !== i) {
+        bars[i].style.backgroundColor = 'red'
+        bars[largest].style.backgroundColor = 'red'
+        swap(bars, i, largest)
+        await sleep(1000 / bars.length)
+        bars[i].style.backgroundColor = 'orange'
+        bars[largest].style.backgroundColor = 'orange'
+        await heapify(bars, n, largest)
+    }
+}
+
+async function heapSort(bars) {
+    let n = bars.length
+
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+        await heapify(bars, n, i)
+    }
+
+    for (let j = n - 1; j > 0; j--) {
+        bars[0].style.backgroundColor = 'red'
+        bars[j].style.backgroundColor = 'red'
+        swap(bars, 0, j)
+        await sleep(1000 / bars.length)
+        bars[0].style.backgroundColor = 'orange'
+        bars[j].style.backgroundColor = 'orange'
+
+        await heapify(bars, j, 0)
+    }
+}
+
+async function partition(bars, left, right) {
+    let pivot = parseInt(bars[Math.floor((right + left) / 2)].style.height.replace('px', ''))
+    let i = left
+    let j = right
+
+    while (i <= j) {
+        while (parseInt(bars[i].style.height.replace('px', '')) < pivot) {
+            i++
+        }
+        while (parseInt(bars[j].style.height.replace('px', '')) > pivot) {
+            j--
+        }
+        if (i <= j) {
+            swap(bars, i, j)
+            i++
+            j--
+        }
+    }
+    return i
+}
+
+async function quickSort(bars, left, right) {
+    if (bars.length > 1) {
+        let i = partition(bars, left, right)
+        if (left < i - 1) {
+            quickSort(bars, left, i - 1)
+        }
+        if (i < right) {
+            quickSort(bars, i, right)
+        }
+    }
 }
