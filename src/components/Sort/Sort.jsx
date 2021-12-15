@@ -28,6 +28,8 @@ export default function Sort() {
         window.location.href = '/'
     }
 
+    document.title = `${algorithmName} | Sorting Algorithms`
+
     let bar = []
     let [noOfBars, setNoOfBars] = useState('')
 

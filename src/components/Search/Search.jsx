@@ -7,21 +7,27 @@ export default function Search() {
     let { algorithm } = useParams()
     let algorithmName = algorithm
 
-    if (algorithm === 'binary') {
-        algorithmName = 'Binary Search'
-    } else if (algorithm === 'exponential') {
-        algorithmName = 'Exponential Search'
-    } else if (algorithm === 'interpolation') {
-        algorithmName = 'Interpolation Search'
-    } else if (algorithm === 'jump') {
-        algorithmName = 'Jump Search'
-    } else if (algorithm === 'linear') {
-        algorithmName = 'Linear Search'
-    } else if (algorithm === 'ternary') {
-        algorithmName = 'Ternary Search'
+    if (algorithm === 'dijkstra') {
+        algorithmName = `Dijkstra's Algorithm`
+    } else if (algorithm === 'a*') {
+        algorithmName = 'A* Search'
+    } else if (algorithm === 'greedy') {
+        algorithmName = 'Greedy BFS'
+    } else if (algorithm === 'swarm') {
+        algorithmName = 'Swarm Algorithm'
+    } else if (algorithm === 'convergent') {
+        algorithmName = 'Convergent Swarm Algorithm'
+    } else if (algorithm === 'bidirectional') {
+        algorithmName = 'Bidirectional Swarm Algorithm'
+    } else if (algorithm === 'bfs') {
+        algorithmName = 'BFS'
+    } else if (algorithm === 'dfs') {
+        algorithmName = 'DFS'
     } else {
         window.location.href = '/'
     }
+
+    document.title = `${algorithmName} | Path Finding Algorithms`
 
     let grid = []
     const { height, width } = useWindowDimensions()
@@ -87,5 +93,20 @@ export default function Search() {
 }
 
 function search(algorithm) {
+    const boxes = document.getElementsByClassName('box')
+    const start = document.getElementsByClassName('selectedStart')[0]
+    const end = document.getElementsByClassName('selectedEnd')[0]
+    if (algorithm === 'binary') {
 
+    } else if (algorithm === 'exponential') {
+
+    } else if (algorithm === 'interpolation') {
+
+    } else if (algorithm === 'jump') {
+
+    } else if (algorithm === 'linear') {
+
+    } else if (algorithm === 'ternary') {
+
+    }
 }

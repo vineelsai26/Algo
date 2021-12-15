@@ -6,23 +6,23 @@ function Home() {
     const navigate = useNavigate()
     const hash = window.location.hash.replace('#', '')
     let sortingHash = false
-    let searchingHash = false
+    let findingHash = false
 
     if (hash === 'sorting') {
         sortingHash = true
-        searchingHash = false
-    } else if (hash === 'searching') {
-        searchingHash = true
+        findingHash = false
+    } else if (hash === 'finding') {
+        findingHash = true
         sortingHash = false
     } else {
-        searchingHash = false
-        sortingHash = false
+        findingHash = true
+        sortingHash = true
     }
 
     return (
         <div>
             <NavBar />
-            <div style={{ display: sortingHash ? 'none' : 'block' }}>
+            <div style={{ display: sortingHash ? 'block' : 'none' }}>
                 <h1 id='sorting' className='centerTitle navBottom' >Sorting Algorithms</h1>
                 <div className='centerDiv' >
                     <button className='algoButtons' onClick={() => navigate('/sort/bubble')}>Bubble Sort</button>
@@ -33,15 +33,17 @@ function Home() {
                     <button className='algoButtons' onClick={() => navigate('/sort/heap')}>Heap Sort</button>
                 </div>
             </div>
-            <div style={{ display: searchingHash ? 'none' : 'block' }}>
-                <h1 id='searching' className='centerTitle navBottom' >Searching Algorithms</h1>
+            <div style={{ display: findingHash ? 'block' : 'none' }}>
+                <h1 id='finding' className='centerTitle navBottom' >Path Finding Algorithms</h1>
                 <div className='centerDiv' >
-                    <button className='algoButtons' onClick={() => navigate('/search/binary')}>Binary Search</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/exponential')}>Exponential Search</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/interpolation')}>Interpolation Search</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/jump')}>Jump Search</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/linear')}>Linear Search</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/ternary')}>Ternary Search</button>
+                    <button className='algoButtons' onClick={() => navigate('/search/dijkstra')}>Dijkstra's Algorithm</button>
+                    <button className='algoButtons' onClick={() => navigate('/search/a*')}>A* Search</button>
+                    <button className='algoButtons' onClick={() => navigate('/search/greedy')}>Greedy BFS</button>
+                    <button className='algoButtons' onClick={() => navigate('/search/swarm')}>Swarm Algorithm</button>
+                    <button className='algoButtons' onClick={() => navigate('/search/convergent')}>Convergent Swarm Algorithm</button>
+                    <button className='algoButtons' onClick={() => navigate('/search/bidirectional')}>Bidirectional Swarm Algorithm</button>
+                    <button className='algoButtons' onClick={() => navigate('/search/bfs')}>BFS</button>
+                    <button className='algoButtons' onClick={() => navigate('/search/dfs')}>DFS</button>
                 </div>
             </div>
         </div>

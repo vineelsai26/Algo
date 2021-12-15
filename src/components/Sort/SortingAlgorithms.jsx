@@ -17,7 +17,7 @@ export async function bubbleSort(bars) {
             const height2 = parseInt(bars[j + 1].style.height.replace('px', ''))
             if (height1 > height2) {
                 swap(bars, j, j + 1)
-                await sleep(1000 / bars.length)
+                await sleep(2000 / bars.length)
             }
             bars[j].style.backgroundColor = 'orange'
             bars[j + 1].style.backgroundColor = 'orange'
@@ -34,7 +34,7 @@ export async function insertionSort(bars) {
             bars[j].style.backgroundColor = 'red'
             bars[j + 1].style.backgroundColor = 'red'
             bars[j + 1].style.height = bars[j].style.height
-            await sleep(1000 / bars.length)
+            await sleep(2000 / bars.length)
             bars[j].style.backgroundColor = 'orange'
             bars[j + 1].style.backgroundColor = 'orange'
             j -= 1
@@ -53,7 +53,7 @@ export async function selectionSort(bars) {
             if (parseInt(bars[j].style.height.replace('px', '')) < parseInt(bars[min].style.height.replace('px', ''))) {
                 min = j
                 bars[min].style.backgroundColor = 'red'
-                await sleep(1000 / bars.length)
+                await sleep(2000 / bars.length)
             }
         }
 
@@ -62,7 +62,7 @@ export async function selectionSort(bars) {
 
         swap(bars, i, min)
 
-        await sleep(1000 / bars.length)
+        await sleep(2000 / bars.length)
 
         bars[min].style.backgroundColor = 'orange'
         bars[i].style.backgroundColor = 'orange'
@@ -98,14 +98,14 @@ async function merge(bars, l, m, r) {
             b++
         }
         bars[k].style.backgroundColor = 'red'
-        await sleep(1000 / bars.length)
+        await sleep(2000 / bars.length)
         k++
     }
 
     while (a < n1) {
         bars[k].style.backgroundColor = 'red'
         bars[k].style.height = `${L[a]}px`
-        await sleep(1000 / bars.length)
+        await sleep(2000 / bars.length)
         a++
         k++
     }
@@ -113,7 +113,7 @@ async function merge(bars, l, m, r) {
     while (b < n2) {
         bars[k].style.backgroundColor = 'red'
         bars[k].style.height = `${R[b]}px`
-        await sleep(1000 / bars.length)
+        await sleep(2000 / bars.length)
         b++
         k++
     }
@@ -146,7 +146,7 @@ async function heapify(bars, n, i) {
         bars[i].style.backgroundColor = 'red'
         bars[largest].style.backgroundColor = 'red'
         swap(bars, i, largest)
-        await sleep(1000 / bars.length)
+        await sleep(2000 / bars.length)
         bars[i].style.backgroundColor = 'orange'
         bars[largest].style.backgroundColor = 'orange'
         await heapify(bars, n, largest)
@@ -164,7 +164,7 @@ export async function heapSort(bars) {
         bars[0].style.backgroundColor = 'red'
         bars[j].style.backgroundColor = 'red'
         swap(bars, 0, j)
-        await sleep(1000 / bars.length)
+        await sleep(2000 / bars.length)
         bars[0].style.backgroundColor = 'orange'
         bars[j].style.backgroundColor = 'orange'
 
@@ -172,35 +172,38 @@ export async function heapSort(bars) {
     }
 }
 
-async function partition(bars, left, right) {
-    let pivot = parseInt(bars[Math.floor((right + left) / 2)].style.height.replace('px', ''))
-    let i = left
-    let j = right
+export async function quickSort(bars, start, end) {
+    if (start >= end) {
+        return
+    }
+    let pivot = start,
+        left = start + 1,
+        right = end
 
-    while (i <= j) {
-        while (parseInt(bars[i].style.height.replace('px', '')) < pivot) {
-            i++
+    while (right >= left) {
+        if (parseInt(bars[right].style.height.replace('px', '')) < parseInt(bars[pivot].style.height.replace('px', '')) && parseInt(bars[left].style.height.replace('px', '')) > parseInt(bars[pivot].style.height.replace('px', ''))) {
+            bars[left].style.backgroundColor = 'red'
+            bars[right].style.backgroundColor = 'red'
+            swap(bars, left, right)
+            await sleep(2000 / bars.length)
+            bars[left].style.backgroundColor = 'orange'
+            bars[right].style.backgroundColor = 'orange'
         }
-        while (parseInt(bars[j].style.height.replace('px', '')) > pivot) {
-            j--
+        if (parseInt(bars[right].style.height.replace('px', '')) >= parseInt(bars[pivot].style.height.replace('px', ''))) {
+            right--
         }
-        if (i <= j) {
-            swap(bars, i, j)
-            i++
-            j--
+        if (parseInt(bars[left].style.height.replace('px', '')) <= parseInt(bars[pivot].style.height.replace('px', ''))) {
+            left++
         }
     }
-    return i
-}
-
-export async function quickSort(bars, left, right) {
-    if (bars.length > 1) {
-        let i = partition(bars, left, right)
-        if (left < i - 1) {
-            quickSort(bars, left, i - 1)
-        }
-        if (i < right) {
-            quickSort(bars, i, right)
-        }
+    if (pivot !== right) {
+        bars[pivot].style.backgroundColor = 'red'
+        bars[right].style.backgroundColor = 'red'
+        swap(bars, pivot, right)
+        await sleep(2000 / bars.length)
+        bars[pivot].style.backgroundColor = 'orange'
+        bars[right].style.backgroundColor = 'orange'
     }
+    await quickSort(bars, start, right - 1)
+    await quickSort(bars, right + 1, end)
 }
