@@ -32,11 +32,11 @@ export default function Search() {
     let grid = []
     const { height, width } = useWindowDimensions()
 
-    let width1 = (width * 0.8) / 50
-    let height1 = (height * 0.8) / 25
+    let width1 = width / 60
+    let height1 = height / 30
 
     for (let i = 1; i < 25; i++) {
-        for (let j = 1; j < 50; j++) {
+        for (let j = 1; j < 60; j++) {
             grid.push(
                 <button id={i + '-' + j} key={i + '-' + j} style={{
                     height: height1, width: width1,
@@ -82,11 +82,13 @@ export default function Search() {
         <div>
             <NavBar />
             <h1 className='centerTitle navBottom'>{algorithmName}</h1>
-            <div className='center' style={{ height: height }}>
-                {grid}
-            </div>
-            <div className='start'>
-                <button className='startButton' onClick={() => { search(algorithm) }}>Start</button>
+            <div>
+                <div style={{ height: height }}>
+                    {grid}
+                </div>
+                <div className='start'>
+                    <button className='startButton' onClick={() => { search(algorithm) }}>Start</button>
+                </div>
             </div>
         </div>
     )
@@ -96,17 +98,29 @@ function search(algorithm) {
     const boxes = document.getElementsByClassName('box')
     const start = document.getElementsByClassName('selectedStart')[0]
     const end = document.getElementsByClassName('selectedEnd')[0]
-    if (algorithm === 'binary') {
+    if (algorithm === 'dijkstra') {
+        dijkstra(boxes, start, end)
+    } else if (algorithm === 'a*') {
 
-    } else if (algorithm === 'exponential') {
+    } else if (algorithm === 'greedy') {
 
-    } else if (algorithm === 'interpolation') {
+    } else if (algorithm === 'swarm') {
 
-    } else if (algorithm === 'jump') {
+    } else if (algorithm === 'convergent') {
 
-    } else if (algorithm === 'linear') {
+    } else if (algorithm === 'bidirectional') {
 
-    } else if (algorithm === 'ternary') {
+    } else if (algorithm === 'bfs') {
+
+    } else if (algorithm === 'dfs') {
 
     }
+}
+
+function dijkstra(boxes, start, end) {
+    let startX = parseInt(start.id.split('-')[0])
+    let startY = parseInt(start.id.split('-')[1])
+
+    let endX = end.id.split('-')[0]
+    let endY = end.id.split('-')[1]
 }
