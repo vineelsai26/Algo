@@ -38,10 +38,6 @@ function Home() {
                 <div className='centerDiv' >
                     <button className='algoButtons' onClick={() => navigate('/search/dijkstra')}>Dijkstra's Algorithm</button>
                     <button className='algoButtons' onClick={() => navigate('/search/a*')}>A* Search</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/greedy')}>Greedy BFS</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/swarm')}>Swarm Algorithm</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/convergent')}>Convergent Swarm Algorithm</button>
-                    <button className='algoButtons' onClick={() => navigate('/search/bidirectional')}>Bidirectional Swarm Algorithm</button>
                     <button className='algoButtons' onClick={() => navigate('/search/bfs')}>BFS</button>
                     <button className='algoButtons' onClick={() => navigate('/search/dfs')}>DFS</button>
                 </div>

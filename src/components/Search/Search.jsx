@@ -1,5 +1,9 @@
 import { useParams } from 'react-router-dom'
 import { useWindowDimensions } from './WindowDimensions'
+import { dijkstra } from './Algorithms/Dijkstra'
+import { astar } from './Algorithms/Astar'
+import { bfs } from './Algorithms/BFS'
+import { dfs } from './Algorithms/DFS'
 import NavBar from '../NavBar/NavBar'
 import './Search.css'
 
@@ -11,14 +15,6 @@ export default function Search() {
         algorithmName = `Dijkstra's Algorithm`
     } else if (algorithm === 'a*') {
         algorithmName = 'A* Search'
-    } else if (algorithm === 'greedy') {
-        algorithmName = 'Greedy BFS'
-    } else if (algorithm === 'swarm') {
-        algorithmName = 'Swarm Algorithm'
-    } else if (algorithm === 'convergent') {
-        algorithmName = 'Convergent Swarm Algorithm'
-    } else if (algorithm === 'bidirectional') {
-        algorithmName = 'Bidirectional Swarm Algorithm'
     } else if (algorithm === 'bfs') {
         algorithmName = 'BFS'
     } else if (algorithm === 'dfs') {
@@ -32,13 +28,13 @@ export default function Search() {
     let grid = []
     const { height, width } = useWindowDimensions()
 
-    let width1 = width / 60
-    let height1 = height / 30
+    let width1 = parseInt(width / 60)
+    let height1 = parseInt(height / 30)
 
-    for (let i = 1; i < 25; i++) {
-        for (let j = 1; j < 60; j++) {
+    for (let i = 0; i < 25; i++) {
+        for (let j = 0; j < 60; j++) {
             grid.push(
-                <button id={i + '-' + j} key={i + '-' + j} style={{
+                <button id={i + '-' + j} key={i + '-' + j} row={i} col={j} style={{
                     height: height1, width: width1,
                 }} className='box' onClick={() => {
                     const btn = document.getElementById(i + '-' + j)
@@ -83,7 +79,7 @@ export default function Search() {
             <NavBar />
             <h1 className='centerTitle navBottom'>{algorithmName}</h1>
             <div>
-                <div style={{ height: height }}>
+                <div style={{ height: height, width: width1 * 60, margin: 'auto' }}>
                     {grid}
                 </div>
                 <div className='start'>
@@ -95,32 +91,16 @@ export default function Search() {
 }
 
 function search(algorithm) {
-    const boxes = document.getElementsByClassName('box')
     const start = document.getElementsByClassName('selectedStart')[0]
     const end = document.getElementsByClassName('selectedEnd')[0]
+    const grid = document.getElementsByClassName('box')
     if (algorithm === 'dijkstra') {
-        dijkstra(boxes, start, end)
+        dijkstra(grid, start, end)
     } else if (algorithm === 'a*') {
-
-    } else if (algorithm === 'greedy') {
-
-    } else if (algorithm === 'swarm') {
-
-    } else if (algorithm === 'convergent') {
-
-    } else if (algorithm === 'bidirectional') {
-
+        astar(grid, start, end)
     } else if (algorithm === 'bfs') {
-
+        bfs(grid, start, end)
     } else if (algorithm === 'dfs') {
-
+        dfs(grid, start, end)
     }
-}
-
-function dijkstra(boxes, start, end) {
-    let startX = parseInt(start.id.split('-')[0])
-    let startY = parseInt(start.id.split('-')[1])
-
-    let endX = end.id.split('-')[0]
-    let endY = end.id.split('-')[1]
 }
