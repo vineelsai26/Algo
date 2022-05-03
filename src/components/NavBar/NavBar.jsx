@@ -7,7 +7,7 @@ function NavBar() {
             <div className='navbarRight'>
                 <a href='/'>Home</a>
                 <a href='/#sorting'>Sorting</a>
-                <a href='/#finding'>Path Finding</a>
+                {/* <a href='/#finding'>Path Finding</a> */}
             </div>
         </div>
     )

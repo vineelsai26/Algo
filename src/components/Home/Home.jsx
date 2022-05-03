@@ -33,7 +33,7 @@ function Home() {
                     <button className='algoButtons' onClick={() => navigate('/sort/heap')}>Heap Sort</button>
                 </div>
             </div>
-            <div style={{ display: findingHash ? 'block' : 'none' }}>
+            {/* <div style={{ display: findingHash ? 'block' : 'none' }}>
                 <h1 id='finding' className='centerTitle navBottom' >Path Finding Algorithms</h1>
                 <div className='centerDiv' >
                     <button className='algoButtons' onClick={() => navigate('/search/dijkstra')}>Dijkstra's Algorithm</button>
@@ -41,7 +41,7 @@ function Home() {
                     <button className='algoButtons' onClick={() => navigate('/search/bfs')}>BFS</button>
                     <button className='algoButtons' onClick={() => navigate('/search/dfs')}>DFS</button>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
