@@ -8,8 +8,6 @@ import 'react-seekbar-component/dist/index.css'
 
 import { bubbleSort, insertionSort, heapSort, mergeSort, quickSort, selectionSort } from './algorithms'
 
-export const runtime = 'edge'
-
 export default function Sort({ params }: { params: { algorithm: string } }) {
     const algorithm = params.algorithm
     let algorithmName = params.algorithm
