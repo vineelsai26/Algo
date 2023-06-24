@@ -1,16 +1,16 @@
 const sleepTime = 2000
 
-const sleep = (milliseconds) => {
+const sleep = (milliseconds: number) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
-function swap(bars, i, j) {
+function swap(bars: HTMLCollectionOf<HTMLElement>, i: number, j: number) {
     let temp = bars[i].style.height
     bars[i].style.height = bars[j].style.height
     bars[j].style.height = temp
 }
 
-export async function bubbleSort(bars) {
+export async function bubbleSort(bars: HTMLCollectionOf<HTMLElement>) {
     for (let i = 0; i < bars.length; i++) {
         for (let j = 0; j < bars.length - i - 1; j++) {
             bars[j].style.backgroundColor = 'red'
@@ -27,7 +27,7 @@ export async function bubbleSort(bars) {
     }
 }
 
-export async function insertionSort(bars) {
+export async function insertionSort(bars: HTMLCollectionOf<HTMLElement>) {
     let i, j, temp
     for (i = 1; i < bars.length; i++) {
         temp = parseInt(bars[i].style.height.replace('px', ''))
@@ -46,7 +46,7 @@ export async function insertionSort(bars) {
     }
 }
 
-export async function selectionSort(bars) {
+export async function selectionSort(bars: HTMLCollectionOf<HTMLElement>) {
     let i, j, min
 
     for (i = 0; i < bars.length - 1; i++) {
@@ -70,7 +70,7 @@ export async function selectionSort(bars) {
     }
 }
 
-async function merge(bars, l, m, r) {
+async function merge(bars: HTMLCollectionOf<HTMLElement>, l: number, m: number, r: number) {
     let n1 = m - l + 1
     let n2 = r - m
 
@@ -123,17 +123,17 @@ async function merge(bars, l, m, r) {
     }
 }
 
-export async function mergeSort(bars, l, r) {
+export async function mergeSort(bars: HTMLCollectionOf<HTMLElement>, l: number, r: number) {
     if (l >= r) {
         return
     }
-    let m = l + parseInt((r - l) / 2)
+    let m = l + (r - l) / 2
     await mergeSort(bars, l, m)
     await mergeSort(bars, m + 1, r)
     await merge(bars, l, m, r)
 }
 
-async function heapify(bars, n, i) {
+async function heapify(bars: HTMLCollectionOf<HTMLElement>, n: number, i: number) {
     let largest = i
     let l = 2 * i + 1
     let r = 2 * i + 2
@@ -157,7 +157,7 @@ async function heapify(bars, n, i) {
     }
 }
 
-export async function heapSort(bars) {
+export async function heapSort(bars: HTMLCollectionOf<HTMLElement>) {
     let n = bars.length
 
     for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
@@ -176,7 +176,7 @@ export async function heapSort(bars) {
     }
 }
 
-export async function quickSort(bars, start, end) {
+export async function quickSort(bars: HTMLCollectionOf<HTMLElement>, start: number, end: number) {
     if (start >= end) {
         return
     }

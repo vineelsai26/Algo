@@ -1,16 +1,18 @@
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+"use client"
 
+import { useState, useEffect } from 'react'
+
+// @ts-ignore
 import SeekBar from 'react-seekbar-component'
 import 'react-seekbar-component/dist/index.css'
 
-import NavBar from '../NavBar/NavBar'
-import { bubbleSort, insertionSort, heapSort, mergeSort, quickSort, selectionSort } from './SortingAlgorithms'
-import './Sort.css'
+import { bubbleSort, insertionSort, heapSort, mergeSort, quickSort, selectionSort } from './algorithms'
 
-export default function Sort() {
-    let { algorithm } = useParams()
-    let algorithmName = algorithm
+export const runtime = 'edge'
+
+export default function Sort({ params }: { params: { algorithm: string } }) {
+    const algorithm = params.algorithm
+    let algorithmName = params.algorithm
 
     if (algorithm === 'bubble') {
         algorithmName = 'Bubble Sort'
@@ -28,28 +30,35 @@ export default function Sort() {
         window.location.href = '/'
     }
 
-    document.title = `${algorithmName} | Sorting Algorithms`
+    useEffect(() => {
+        document.title = `${algorithmName} | Sorting Algorithms`
+    }, [algorithmName])
 
     let bar = []
-    let [noOfBars, setNoOfBars] = useState('')
+    let [noOfBars, setNoOfBars] = useState(0)
 
     const barHeight = Array.from({ length: noOfBars }, () => Math.floor(Math.random() * 300))
 
     for (let i = 0; i < noOfBars; i++) {
-        bar.push(<div id={i} key={i} style={{
-            height: barHeight[i], width: `${(100 / noOfBars) - 0.33}%`,
-        }} className='bar'></div>)
+        bar.push(
+            <div id={i.toString()} key={i} style={{
+                height: barHeight[i], 
+                width: `${(100 / noOfBars)}%`,
+                float: 'left', 
+                backgroundColor: 'orange',
+                border: '1px solid black',
+                transition: 'height 0.2s ease-in-out'
+            }} className='bar'></div>
+        )
     }
 
     return (
         <div>
-            <NavBar />
-            <h1 className='centerTitle navBottom'>{algorithmName}</h1>
-            <div className='graph'>
+            <h1 className='text-center p-6 dark:text-white text-2xl'>{algorithmName}</h1>
+            <div className='w-4/5 m-auto'>
                 {bar}
             </div>
-            <div className='seekBar'>
-                <button className='startButton' onClick={() => { sort(algorithm) }}>Start</button>
+            <div className='p-10 mx-auto my-10 bottom-8 left-0 right-0 absolute w-4/5 flex flex-col'>
                 <SeekBar
                     getNumber={setNoOfBars}
                     backgroundColor='gray'
@@ -60,13 +69,15 @@ export default function Sort() {
                     headShadowSize={6}
                     progress={0}
                 />
+                <button className='relative w-1/5 m-auto my-4 text-center rounded border border-blue-500 bg-transparent py-2 px-4 font-semibold text-white bg-blue-500 duration-300 hover:border-transparent hover:bg-blue-700 hover:text-white' onClick={() => { sort(algorithm) }}>Start</button>
             </div>
         </div>
     )
 }
 
-function sort(algorithm) {
-    const bars = document.getElementsByClassName('bar')
+function sort(algorithm: string) {
+    const bars = document.getElementsByClassName('bar') as HTMLCollectionOf<HTMLElement>
+
     if (algorithm === 'bubble') {
         bubbleSort(bars)
     } else if (algorithm === 'insertion') {
