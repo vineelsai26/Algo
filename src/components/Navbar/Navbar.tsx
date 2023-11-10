@@ -18,7 +18,6 @@ function classNames(...classes: string[]) {
 }
 
 export default function Navbar() {
-
 	return (
 		<>
 			<div className='bg-gray-800'>

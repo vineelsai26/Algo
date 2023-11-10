@@ -3,8 +3,19 @@ const nextConfig = {
 	reactStrictMode: true,
 	productionBrowserSourceMaps: true,
 	images: {
-		domains: ['skillicons.dev', 'vineelsai.com'],
-		dangerouslyAllowSVG: true
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'icons.vineelsai.com',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'vineelsai.com',
+				pathname: '/**',
+			},
+		],
+		dangerouslyAllowSVG: true,
 	},
 	swcMinify: true,
 }
