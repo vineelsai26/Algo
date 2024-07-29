@@ -12,8 +12,8 @@ importers:
         specifier: 14.2.5
         version: 14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       rc-slider:
-        specifier: ^11.1.0
-        version: 11.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^11.1.5
+        version: 11.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1387,8 +1387,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  rc-slider@11.1.0:
-    resolution: {integrity: sha512-tha9VMVZy1IGSiwl9w0pxrFjGLbOLTUu0XrPInYz9kpyU+kTSKSYA4NzKchu+G/PCr/e2SwGqAj8rCYPnwm0Dg==}
+  rc-slider@11.1.5:
+    resolution: {integrity: sha512-b77H5PbjMKsvkYXAYIkn50QuFX6ICQmCTibDinI9q+BHx65/TV4TeU25+oadhSRzykxs0/vBWeKBwRyySOeWlg==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -3165,7 +3165,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  rc-slider@11.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  rc-slider@11.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.21.5
       classnames: 2.3.2
