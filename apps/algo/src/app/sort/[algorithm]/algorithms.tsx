@@ -5,7 +5,7 @@ const sleep = (milliseconds: number) => {
 }
 
 function swap(bars: HTMLCollectionOf<HTMLElement>, i: number, j: number) {
-	let temp = bars[i].style.height
+	const temp = bars[i].style.height
 	bars[i].style.height = bars[j].style.height
 	bars[j].style.height = temp
 }
@@ -82,11 +82,11 @@ async function merge(
 	m: number,
 	r: number
 ) {
-	let n1 = m - l + 1
-	let n2 = r - m
+	const n1 = m - l + 1
+	const n2 = r - m
 
-	let L = new Array(n1)
-	let R = new Array(n2)
+	const L = new Array(n1)
+	const R = new Array(n2)
 
 	for (let i = 0; i < n1; i++) {
 		L[i] = parseInt(bars[l + i].style.height.replace('px', ''))
@@ -141,7 +141,7 @@ export async function mergeSort(
 	if (l >= r) {
 		return
 	}
-	let m = l + (r - l) / 2
+	const m = l + (r - l) / 2
 	await mergeSort(bars, l, m)
 	await mergeSort(bars, m + 1, r)
 	await merge(bars, l, m, r)
@@ -153,8 +153,8 @@ async function heapify(
 	i: number
 ) {
 	let largest = i
-	let l = 2 * i + 1
-	let r = 2 * i + 2
+	const l = 2 * i + 1
+	const r = 2 * i + 2
 
 	if (
 		l < n &&
@@ -184,7 +184,7 @@ async function heapify(
 }
 
 export async function heapSort(bars: HTMLCollectionOf<HTMLElement>) {
-	let n = bars.length
+	const n = bars.length
 
 	for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
 		await heapify(bars, n, i)
@@ -210,9 +210,9 @@ export async function quickSort(
 	if (start >= end) {
 		return
 	}
-	let pivot = start,
-		left = start + 1,
-		right = end
+	const pivot = start
+	let left = start + 1
+	let right = end
 
 	while (right >= left) {
 		if (

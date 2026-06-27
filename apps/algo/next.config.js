@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	output: 'standalone',
 	reactStrictMode: true,
-	productionBrowserSourceMaps: true,
+	productionBrowserSourceMaps: false,
 	images: {
 		remotePatterns: [
 			{
@@ -17,7 +18,6 @@ const nextConfig = {
 		],
 		dangerouslyAllowSVG: true,
 	},
-	swcMinify: true,
 }
 
 export default nextConfig

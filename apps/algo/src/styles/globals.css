@@ -1,0 +1,41 @@
+@config '../../tailwind.config.cjs';
+@import 'tailwindcss';
+@import '@vstack/ui/styles.css';
+
+:root {
+	--vstack-bg: #f5efe2;
+	--vstack-bg-soft: #fffaf0;
+	--vstack-surface: #fffdf7;
+	--vstack-surface-strong: #fff4cf;
+	--vstack-text: #111111;
+	--vstack-text-muted: #3f3a30;
+	--vstack-accent: #f25c2a;
+	--vstack-accent-soft: #ffd8c7;
+	--vstack-accent-contrast: #ffffff;
+	--vstack-border: #111111;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+}
+
+.algo-stage {
+	min-height: 62vh;
+}
+
+.algo-bars {
+	display: flex;
+	align-items: end;
+	height: min(48vh, 360px);
+	overflow: hidden;
+}
+
+.algo-bar {
+	background: var(--vstack-accent);
+	border: 1px solid var(--vstack-border);
+	transition: height 0.2s ease-in-out;
+}
