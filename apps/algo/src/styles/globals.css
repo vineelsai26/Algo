@@ -2,18 +2,10 @@
 @import 'tailwindcss';
 @import '@vstack/ui/styles.css';
 
-:root {
-	--vstack-bg: #f5efe2;
-	--vstack-bg-soft: #fffaf0;
-	--vstack-surface: #fffdf7;
-	--vstack-surface-strong: #fff4cf;
-	--vstack-text: #111111;
-	--vstack-text-muted: #3f3a30;
-	--vstack-accent: #f25c2a;
-	--vstack-accent-soft: #ffd8c7;
-	--vstack-accent-contrast: #ffffff;
-	--vstack-border: #111111;
-}
+/*
+ * Shared @vstack/ui tokens default to Ledger. Override variables here only
+ * for app-specific tweaks, or set data-vstack-theme for a full preset.
+ */
 
 html {
 	scroll-behavior: smooth;
@@ -37,5 +29,6 @@ body {
 .algo-bar {
 	background: var(--vstack-accent);
 	border: 1px solid var(--vstack-border);
+	border-radius: var(--vstack-radius-sm);
 	transition: height 0.2s ease-in-out;
 }

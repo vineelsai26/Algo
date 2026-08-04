@@ -12,7 +12,7 @@ export default function RootLayout({
 			<head>
 				<link rel='icon' href='/logo-light.png' type='image/x-icon' />
 			</head>
-			<body className='vstack-app-shell vstack-grid-shell'>
+			<body className='vstack-app-shell'>
 				<Navbar />
 				<main>{children}</main>
 				<Footer />
